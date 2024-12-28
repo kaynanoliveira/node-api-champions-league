@@ -1,5 +1,14 @@
-const getPlayerService = () => {
-    return {player: "ronaldo"}
-}
+import { noContent, Ok } from "../utils/http-helper"
 
-export default getPlayerService
+export const getPlayerService = async () => {
+    const data = {player: "ronaldo"}
+    let response = null
+
+    if(data){
+        response = await Ok(data)
+    } else {
+        response = await noContent()
+    }
+    
+    return response
+}
