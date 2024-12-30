@@ -307,10 +307,24 @@ const database: PlayerModel[] = [
       },
 ]
 
+// Listar todos os players 
 export const findAllPlayers = async ():Promise<PlayerModel[]> => {
     return database
 }
 
+// Listar players pelo ID
 export const findPlayerById = async (id: number):Promise<PlayerModel | undefined> => {
     return database.find(player => player.id === id)
+}
+
+export const insertPlayer = async (player:PlayerModel) => {
+    database.push(player)
+}
+
+export const deleteOnePlayer = async (id: number) => {
+    const index = database.findIndex((player) => player.id === id)
+
+    if(index !== -1){
+      database.splice(index, 1)
+    }
 }
