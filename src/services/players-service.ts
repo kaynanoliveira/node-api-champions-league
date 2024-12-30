@@ -1,4 +1,5 @@
 import { PlayerModel } from "../models/player-model"
+import { statisticsModel } from "../models/statistics-model"
 import * as PlayerRepository from "../repositories/players-repository"
 import * as StatusCode from "../utils/http-helper"
 
@@ -42,7 +43,24 @@ export const createPlayerService = async (player: PlayerModel) => {
 
 export const deletePlayerService = async (id: number) => {
     let response = null
-    await PlayerRepository.deleteOnePlayer(id)
-    response = StatusCode.Ok({message: "Deleted"})
+    const isDeleted = await PlayerRepository.deleteOnePlayer(id)
+    if(isDeleted){
+        response = await StatusCode.Ok({message: "Deleted"})
+    }else{
+        response = await StatusCode.badRequest()
+    }
+    
     return response
+}
+
+export const updatePlayerService = async (id: number, statistics: statisticsModel) => {
+    let response = null
+    const data = await PlayerRepository.findAndModifyPlayer(id, statistics)
+    
+    if(Object.keys(data).length === 0){
+        response = await StatusCode.badRequest()
+    } else {
+        response = await StatusCode.Ok(data)
+    }
+    return response 
 }
