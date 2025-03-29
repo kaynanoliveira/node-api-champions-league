@@ -10,11 +10,11 @@ Este projeto consiste no desenvolvimento de uma API para a Liga dos Campeões da
 
 ## 📌 Funcionalidades
 
-- Cadastro e gerenciamento de clubes
-- Listagem de times participantes
-- Informações sobre partidas e resultados
-- Histórico de edições anteriores
-- Estatísticas dos times e jogadores
+- Retornar todos os jogadores
+- Cadastrar um jogador
+- Remove um jogador
+- Retorna todos os clubes cadastrados
+- Atualiza informações de um jogador
 
 ## 📦 Instalação e Execução
 
@@ -32,10 +32,10 @@ Este projeto consiste no desenvolvimento de uma API para a Liga dos Campeões da
 
 ## 🛠 Endpoints Principais
 
-- `GET /teams` → Retorna todos os times participantes
-- `POST /teams` → Adiciona um novo time
-- `GET /matches` → Lista todas as partidas
-- `POST /matches` → Registra uma nova partida
-- `GET /standings` → Classificação atualizada
-
+- `GET /players` → Retorna todos os jogadores
+- `GET /players/:id` → Retorna um jogador pelo ID
+- `POST /players` → Adiciona um novo jogador
+- `DELETE /players/:id` → Remove um jogador
+- `PATCH /players/:id` → Atualiza informações de um jogador pelo ID
+- `GET /clubs` → Retorna todos os clubes
 
